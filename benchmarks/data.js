@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682117295132,
+  "lastUpdate": 1682118517377,
   "repoUrl": "https://github.com/phbasler/bsmpt-benchmark",
   "entries": {
     "C++ Benchmark": [
@@ -104,6 +104,46 @@ window.BENCHMARK_DATA = {
             "value": 153.0610855239721,
             "unit": "ns/iter",
             "extra": "iterations: 4576518\ncpu: 152.9046537127135 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "philipp.basler@kit.edu",
+            "name": "Philipp Basler"
+          },
+          "committer": {
+            "email": "philipp.basler@kit.edu",
+            "name": "Philipp Basler"
+          },
+          "distinct": true,
+          "id": "d03441f1a265f05aada455db5eff89d7c0d38c29",
+          "message": "Add mixed mode using matirx product",
+          "timestamp": "2023-04-22T01:07:33+02:00",
+          "tree_id": "86143fc75cd19a14858edf476794da99092ffffc",
+          "url": "https://github.com/phbasler/bsmpt-benchmark/commit/d03441f1a265f05aada455db5eff89d7c0d38c29"
+        },
+        "date": 1682118516962,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_TensorMultiplication",
+            "value": 4153.436302609543,
+            "unit": "ns/iter",
+            "extra": "iterations: 178461\ncpu: 4152.459080695501 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_Simplified",
+            "value": 147.19186962180424,
+            "unit": "ns/iter",
+            "extra": "iterations: 4753801\ncpu: 147.17778468219433 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_MixedMode",
+            "value": 2009.2460948768364,
+            "unit": "ns/iter",
+            "extra": "iterations: 350117\ncpu: 2009.0923891156392 ns\nthreads: 1"
           }
         ]
       }

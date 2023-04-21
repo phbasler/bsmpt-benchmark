@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682117185567,
+  "lastUpdate": 1682117295132,
   "repoUrl": "https://github.com/phbasler/bsmpt-benchmark",
   "entries": {
     "C++ Benchmark": [
@@ -68,6 +68,42 @@ window.BENCHMARK_DATA = {
             "value": 151.080215248845,
             "unit": "ns/iter",
             "extra": "iterations: 4635565\ncpu: 150.9921444311535 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "28863303+phbasler@users.noreply.github.com",
+            "name": "Philipp Basler",
+            "username": "phbasler"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "269624b6042397bdab3ac9599f0c7733aaafe941",
+          "message": "Update README.md",
+          "timestamp": "2023-04-22T00:47:47+02:00",
+          "tree_id": "c99c4e0fc3ce8a75d57b60ef994cdbbd7abb27d5",
+          "url": "https://github.com/phbasler/bsmpt-benchmark/commit/269624b6042397bdab3ac9599f0c7733aaafe941"
+        },
+        "date": 1682117294711,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_TensorMultiplication",
+            "value": 3903.0666842574124,
+            "unit": "ns/iter",
+            "extra": "iterations: 178123\ncpu: 3895.348719704922 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_Simplified",
+            "value": 153.0610855239721,
+            "unit": "ns/iter",
+            "extra": "iterations: 4576518\ncpu: 152.9046537127135 ns\nthreads: 1"
           }
         ]
       }

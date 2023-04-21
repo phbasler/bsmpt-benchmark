@@ -295,6 +295,25 @@ Eigen::MatrixXd GetSimplifiedMatrix(const std::vector<double> &vev) {
   return MassHiggs;
 }
 
+std::vector<std::vector<Eigen::MatrixXd>> GetMixedMatrixTensor() {
+  std::vector<std::vector<Eigen::MatrixXd>> result;
+  auto L4_orig = GetL4Tensor();
+  result.resize(NHiggs);
+  for (std::size_t i{0}; i < NHiggs; ++i) {
+    result[i].resize(NHiggs);
+    for (std::size_t j{0}; j < NHiggs; ++j) {
+      auto &mat = result[i][j];
+      mat = Eigen::MatrixXd::Zero(NHiggs, NHiggs);
+      for (std::size_t k{0}; k < NHiggs; ++k) {
+        for (std::size_t l{0}; l < NHiggs; ++l) {
+          mat(k, l) = L4_orig[i][j][k][l];
+        }
+      }
+    }
+  }
+  return result;
+}
+
 } // namespace
 
 static void BM_TensorMultiplication(benchmark::State &state) {
@@ -326,6 +345,28 @@ static void BM_Simplified(benchmark::State &state) {
   }
 }
 
+static void BM_MixedMode(benchmark::State &state) {
+  const auto MixedTensor = GetMixedMatrixTensor();
+  const std::vector<double> vev{5, 30, 20, -1};
+  const auto vev_base = ConvertVEVToHiggsBase(vev);
+  Eigen::MatrixXd OmegaMat = Eigen::MatrixXd::Zero(NHiggs, NHiggs);
+  for (std::size_t i{0}; i < NHiggs; ++i) {
+    for (std::size_t j{0}; j < NHiggs; ++j) {
+      OmegaMat(i, j) = vev_base.at(i) * vev_base.at(j);
+    }
+  }
+
+  for (auto _ : state) {
+    Eigen::MatrixXd MassHiggs = Eigen::MatrixXd::Zero(NHiggs, NHiggs);
+    for (std::size_t i{0}; i < NHiggs; ++i) {
+      for (std::size_t j{0}; j < NHiggs; ++j) {
+        MassHiggs(i, j) = (MixedTensor[i][j] * OmegaMat).diagonal().sum();
+      }
+    }
+  }
+}
+
 BENCHMARK(BM_TensorMultiplication);
 BENCHMARK(BM_Simplified);
+BENCHMARK(BM_MixedMode);
 BENCHMARK_MAIN();

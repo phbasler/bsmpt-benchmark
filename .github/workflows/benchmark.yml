@@ -5,7 +5,7 @@
 name: Benchmark
 on:
   push:
-    branches: [master, benchmarks]
+    branches: [main, benchmarks]
 
 permissions:
   # deployments permission to deploy GitHub pages website

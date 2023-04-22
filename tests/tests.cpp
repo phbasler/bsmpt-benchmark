@@ -7,19 +7,30 @@ TEST(CompareTensors, compare) {
   const auto L4 = GetL4Tensor();
   const auto MixedTensor = GetMixedMatrixTensor();
 
+  auto TWrapTensor = GetL4InTWrap();
+  const auto vev_tens = GetVevInTWrap(vev_base);
+
   const auto calculatedExplicity = CalculateExplicitly(L4, vev_base);
   const auto calculatedSimplified = GetSimplifiedMatrix(vev_base);
   const auto calculatedWithTrace = CalculateWithTrace(MixedTensor, vev_base);
+  const Eigen::MatrixXd calculatedWithTWrap =
+      CalculateWithTWrap(TWrapTensor, vev_tens);
 
   ASSERT_PRED2(
       [](const Eigen::MatrixXd &lhs, const Eigen::MatrixXd &rhs) {
         return lhs.isApprox(rhs, 1e-4);
       },
-      calculatedSimplified, calculatedSimplified);
+      calculatedExplicity, calculatedSimplified);
 
   ASSERT_PRED2(
       [](const Eigen::MatrixXd &lhs, const Eigen::MatrixXd &rhs) {
         return lhs.isApprox(rhs, 1e-4);
       },
-      calculatedSimplified, calculatedWithTrace);
+      calculatedExplicity, calculatedWithTrace);
+
+  ASSERT_PRED2(
+      [](const Eigen::MatrixXd &lhs, const Eigen::MatrixXd &rhs) {
+        return lhs.isApprox(rhs, 1e-4);
+      },
+      calculatedExplicity, calculatedWithTWrap);
 }

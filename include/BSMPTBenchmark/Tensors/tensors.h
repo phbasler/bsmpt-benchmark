@@ -1,5 +1,6 @@
 #pragma once
 
+#include <TWrap/TWrap.h>
 #include <eigen3/Eigen/Dense>
 #include <vector>
 
@@ -30,3 +31,9 @@ Eigen::MatrixXd CalculateExplicitly(
 Eigen::MatrixXd
 CalculateWithTrace(const std::vector<std::vector<Eigen::MatrixXd>> &MixedTensor,
                    const std::vector<double> &vev);
+
+TWrap::WTens<double, 1> GetVevInTWrap(const std::vector<double> &vev);
+TWrap::WTens<double, 4> GetL4InTWrap();
+Eigen::Map<Eigen::MatrixXd>
+CalculateWithTWrap(TWrap::WTens<double, 4> &tens,
+                   const TWrap::WTens<double, 1> &vev);

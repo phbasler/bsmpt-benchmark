@@ -332,3 +332,39 @@ CalculateWithTrace(const std::vector<std::vector<Eigen::MatrixXd>> &MixedTensor,
   }
   return MassHiggs;
 }
+
+TWrap::WTens<double, 1> GetVevInTWrap(const std::vector<double> &vev) {
+  TWrap::WTens<double, 1> vev_tens(vev.size());
+  for (std::size_t i{0}; i < vev.size(); ++i) {
+    vev_tens(i) = vev.at(i);
+  }
+  return vev_tens;
+}
+
+TWrap::WTens<double, 4> GetL4InTWrap() {
+  const auto L4 = GetL4Tensor();
+  TWrap::WTens<double, 4> Curvature_Higgs_L4_tens(NHiggs, NHiggs, NHiggs,
+                                                  NHiggs);
+  for (std::size_t i{0}; i < NHiggs; ++i) {
+    for (std::size_t j{0}; j < NHiggs; ++j) {
+      for (std::size_t k{0}; k < NHiggs; ++k) {
+        for (std::size_t l{0}; l < NHiggs; ++l) {
+          Curvature_Higgs_L4_tens(i, j, k, l) = L4[i][j][k][l];
+        }
+      }
+    }
+  }
+
+  return Curvature_Higgs_L4_tens;
+}
+
+Eigen::Map<Eigen::MatrixXd>
+CalculateWithTWrap(TWrap::WTens<double, 4> &tens,
+                   const TWrap::WTens<double, 1> &vev) {
+  auto tmp = tens.concat(vev, 3, 0).concat(vev, 2, 0);
+
+  Eigen::Map<Eigen::MatrixXd> matrix(tmp.tens.data(), tmp.get_dimensions(0),
+                                     tmp.get_dimensions(1));
+
+  return matrix;
+}

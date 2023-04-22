@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1682143644856,
+  "lastUpdate": 1682143789294,
   "repoUrl": "https://github.com/phbasler/bsmpt-benchmark",
   "entries": {
     "C++ Benchmark": [
@@ -184,6 +184,46 @@ window.BENCHMARK_DATA = {
             "value": 2065.6944156421146,
             "unit": "ns/iter",
             "extra": "iterations: 337550\ncpu: 2064.2728484668937 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "philipp.basler@kit.edu",
+            "name": "Philipp Basler"
+          },
+          "committer": {
+            "email": "philipp.basler@kit.edu",
+            "name": "Philipp Basler"
+          },
+          "distinct": true,
+          "id": "6f4eb1135f30704e61312fc267ca0a3d90dc30d1",
+          "message": "Change master to main in workflow",
+          "timestamp": "2023-04-22T08:08:39+02:00",
+          "tree_id": "d35c9f326b15924940f7fdfd10fc8e3b3e51c407",
+          "url": "https://github.com/phbasler/bsmpt-benchmark/commit/6f4eb1135f30704e61312fc267ca0a3d90dc30d1"
+        },
+        "date": 1682143788547,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_TensorMultiplication",
+            "value": 4621.188662212127,
+            "unit": "ns/iter",
+            "extra": "iterations: 151758\ncpu: 4620.781112033632 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_Simplified",
+            "value": 79.84627017809984,
+            "unit": "ns/iter",
+            "extra": "iterations: 8904889\ncpu: 79.8262841906283 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_MixedMode",
+            "value": 2073.2809963881145,
+            "unit": "ns/iter",
+            "extra": "iterations: 337499\ncpu: 2072.844660280475 ns\nthreads: 1"
           }
         ]
       }

@@ -28,12 +28,13 @@ include(CTest)
 find_package(Threads REQUIRED)
 find_package(benchmark REQUIRED)
 find_package(Eigen3 3 REQUIRED)
+find_package(GTest REQUIRED)
 
 find_lto(CXX)
 
 
 add_subdirectory(src)
-
+add_subdirectory(tests)
 
 # ------------------------ Doxygen --------------------------------------------
 
